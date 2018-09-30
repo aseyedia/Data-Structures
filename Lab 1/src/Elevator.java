@@ -64,7 +64,8 @@ public class Elevator
 				while (!passengerList.isEmpty() || !this.elevatorPass.isEmpty())
 					{
 						if (this.elevatorPass.isEmpty()&& !passengerList.isEmpty()) {
-							
+							// in the case that the elevator is empty of passengers and 
+							// the list of passengers to board is NOT empty
 							while(elevatorCapacity < 5) {
 								if(passengerList.get(i).getFloorEntered() == currentFloor) {
 									elevatorPass.push(passengerList.get(i));
