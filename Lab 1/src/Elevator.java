@@ -60,7 +60,7 @@ public class Elevator
 				int targetFloor = -1;
 				int elevatorCapacity = 0;
 				int i = 0;
-				int[] target = new int[10];
+				int[] shaft = new int[5];
 				while (!passengerList.isEmpty() || !this.elevatorPass.isEmpty())
 					{
 						if (this.elevatorPass.isEmpty()&& !passengerList.isEmpty()) {
