@@ -43,4 +43,19 @@ public class Passenger
 				this.numTimesTemp = numTimesTemp;
 			}
 
+		public void numTimesTemp()
+			{
+				numTimesTemp += 1;
+			}
+
+		public String getName()
+			{
+				return name;
+			}
+
+		public void setName(String name)
+			{
+				this.name = name;
+			}
+
 	}

@@ -22,7 +22,8 @@ public class Main
 				Scanner input = new Scanner(System.in);
 				System.out.println("Enter the file name of the input.");
 				String fileName = input.nextLine();
-				passengerList(fileName);
+				ArrayList<Passenger> listOfPassengers = passengerList(fileName);
+				Elevator elevator;
 
 			}
 		/* @formatter:off
@@ -90,6 +91,5 @@ public class Main
 					}
 				return passengerList;
 			}
-		
-		
+
 	}
