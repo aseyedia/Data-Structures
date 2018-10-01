@@ -5,6 +5,7 @@ public class Elevator {
     boolean isFunctional;
     boolean direction;
     boolean isFull;
+    int isFullTimes = 0;
     boolean elevatorEmpty;
     int tempCounter = 0;
     int timesEmpty = 0;
@@ -26,6 +27,7 @@ public class Elevator {
 	    isFull();
 	} else if (passenger.getFloorEntered() == currentFloor) {
 	    push(passenger);
+	    System.out.println(passenger.getName() + " got onto the elevator at floor " + this.currentFloor);
 	}
     }
 
@@ -88,43 +90,56 @@ public class Elevator {
     }
 
     public void removePassenger(int currentFloor) {
-	if (top <= -1) {
+	if (top == -1) {
 	    isEmptyCounter++;
 	} else {
-	    for (int i = 0; i < top; i++) {
+	    for (int i = 0; i < top + 1; i++) {
 		tempPush(pop());
 		// above is pop
 		if (temp[tempTop].getFloorExited() == currentFloor) {
-		    tempPop();
+		    System.out.println(tempPop().getName() + " got off the elevator at floor " + currentFloor);
 		    numRode++;
-		} else if (i < top) {
-		    tempPush(pop());
+
+//		} else if (i < top + 1) {
+//		    tempPush(pop());
 		} else if (elevatorEmpty) {
 		    while (tempTop != -1) {
 			push(tempPop());
 		    }
 		}
-		while (tempTop != -1) {
-		    push(tempPop());
-		}
+
 	    }
 	}
+	while (tempTop != -1) {
+	    push(tempPop());
+	}
+
     }
 
     public boolean isFull() {
-	if (top >= 5) {
+	this.isFull = false;
+	if (top == 4 && isFullTimes == 0) {
 	    this.isFull = true;
 	    this.isFullCounter += 1;
+	    this.isFullTimes += 1;
+	    System.out.println("The elevator is full.");
 	}
 	return isFull;
     }
 
+    public void setIsFullTimes() {
+	this.isFullTimes = 0;
+
+    }
+
     public boolean elevatorEmpty() {
+	this.elevatorEmpty = false;
 	if (top == -1) {
 	    this.elevatorEmpty = true;
 	    timesEmpty++;
+	    System.out.println("Elevator is empty.");
 	}
-	return elevatorEmpty();
+	return this.elevatorEmpty;
     }
 
     public boolean tempElevatorEmpty() {
@@ -149,12 +164,16 @@ public class Elevator {
     }
 
     public int whichFloor(Passenger newPass) {
-	int closestFloor = newPass.getFloorExited();
+	int closestFloor = newPass.getFloorEntered();
 	if (top == -1) {
+	   elevatorEmpty();
 	} else {
 	    for (int i = 0; i < 5; i++) {
 		tempPush(pop());
 		if (Math.abs(closestFloor - currentFloor) < Math.abs(temp[tempTop].getFloorExited() - currentFloor)) {
+		    while (tempTop != -1) {
+			push(tempPop());
+		    }
 		    continue;
 		} else {
 		    closestFloor = temp[tempTop].getFloorExited();
