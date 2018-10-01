@@ -1,7 +1,6 @@
 public class Elevator {
     int top = -1;
     int tempTop = -1;
-
     boolean tempElevatorEmpty;
     boolean isFunctional;
     boolean direction;
@@ -25,9 +24,7 @@ public class Elevator {
     public void addPassenger(Passenger passenger) {
 	if (top >= 4) {
 	    isFull();
-	}
-
-	else if (passenger.getFloorEntered() == currentFloor) {
+	} else if (passenger.getFloorEntered() == currentFloor) {
 	    push(passenger);
 	}
     }
@@ -40,14 +37,11 @@ public class Elevator {
     public Passenger pop() {
 	Passenger pass = null;
 	if (elevatorEmpty) {
-
 	} else {
 	    Passenger passToReturn;
-
 	    passToReturn = elevatorPass[top];
 	    elevatorPass[top] = null;
 	    top--;
-
 	    return passToReturn;
 	}
 	return pass;
@@ -59,7 +53,6 @@ public class Elevator {
      * @param number An integer to push onto the top of the stack.
      */
     public Passenger push(Passenger passenger) {
-
 	top++;
 	elevatorPass[top] = passenger;
 	return elevatorPass[top];
@@ -73,14 +66,11 @@ public class Elevator {
     public Passenger tempPop() {
 	Passenger pass = null;
 	if (tempElevatorEmpty) {
-
 	} else {
 	    Passenger passToReturn;
-
 	    passToReturn = temp[tempTop];
 	    temp[tempTop] = null;
 	    tempTop--;
-
 	    pass = passToReturn;
 	}
 	return pass;
@@ -92,7 +82,6 @@ public class Elevator {
      * @param number An integer to push onto the top of the stack.
      */
     public Passenger tempPush(Passenger passenger) {
-
 	tempTop++;
 	temp[tempTop] = passenger;
 	return temp[tempTop];
@@ -104,7 +93,6 @@ public class Elevator {
 	} else {
 	    for (int i = 0; i < top; i++) {
 		tempPush(pop());
-
 		// above is pop
 		if (temp[tempTop].getFloorExited() == currentFloor) {
 		    tempPop();
@@ -127,17 +115,14 @@ public class Elevator {
 	if (top >= 5) {
 	    this.isFull = true;
 	    this.isFullCounter += 1;
-
 	}
 	return isFull;
-
     }
 
     public boolean elevatorEmpty() {
 	if (top == -1) {
 	    this.elevatorEmpty = true;
 	    timesEmpty++;
-
 	}
 	return elevatorEmpty();
     }
@@ -145,7 +130,6 @@ public class Elevator {
     public boolean tempElevatorEmpty() {
 	if (top == -1) {
 	    this.tempElevatorEmpty = true;
-
 	}
 	return elevatorEmpty();
     }
@@ -167,7 +151,6 @@ public class Elevator {
     public int whichFloor(Passenger newPass) {
 	int closestFloor = newPass.getFloorExited();
 	if (top == -1) {
-
 	} else {
 	    for (int i = 0; i < 5; i++) {
 		tempPush(pop());
@@ -179,7 +162,6 @@ public class Elevator {
 			push(tempPop());
 		    }
 		    return closestFloor;
-
 		}
 	    }
 	}
@@ -193,5 +175,4 @@ public class Elevator {
     public void setCurrentFloor(int currentFloor) {
 	this.currentFloor = currentFloor;
     }
-
 }
