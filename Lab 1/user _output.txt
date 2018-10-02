@@ -1,0 +1,33 @@
+The following data are those of the people who rode this elevator. The columns from left to right represent the floor they entered, the floor they exited, and the number of times they had to temporarily vacate the narrow elevator. These are their stories.
+
+People who took the elevator:
+
+Mao	5	2	2
+God	2	3	2
+Gore	3	2	2
+Obama	2	1	2
+Iraq	2	1	2
+Syria	3	4	2
+Rats	3	2	7
+Brats	2	1	2
+Cats	3	1	7
+Putin	3	1	8
+Blue	3	2	2
+Dewey	3	4	9
+Gick	4	5	2
+Pugh	3	5	16
+Brick	3	2	2
+Tower	3	2	15
+Vick	2	3	2
+Cower	3	1	14
+Pick	5	4	2
+Sony	4	3	2
+Phony	3	4	2
+Tony	3	1	10
+Toast	3	2	7
+Gator	3	5	2
+Most	2	5	7
+
+People who took the stairs:
+
+Number of times the elevator was full: 0 Number of times the elevator was empty: 18 Number of times the elevator was ridden: 30

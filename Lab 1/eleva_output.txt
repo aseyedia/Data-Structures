@@ -46,7 +46,4 @@ Lew	2	5	0
 Nan	2	3	0
 Bif	3	5	0
 Moe	3	5	0
-
-Number of times the elevator was full: 10
-Number of times the elevator was empty: 6
-Number of times the elevator was ridden: 32
+Number of times the elevator was full: 10 Number of times the elevator was empty: 6 Number of times the elevator was ridden: 32
