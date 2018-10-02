@@ -1,6 +1,5 @@
 # Elevator Simulation using Stacks
 
-================================
 
 This project was created for the EN.605.202.81.FA18 Data Structures class taken at Johns Hopkins University.
 
