@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  * This is the main java class in which the elevator program will run.
@@ -29,43 +27,56 @@ public class Main {
 	Elevator elevNonFunctioning = new Elevator(false, null);
 	// use array
 	BufferedReader file = new BufferedReader(new FileReader(fileName));
-
+	
 	try {
 	    while (file.ready()) {
 		String fileLine = file.readLine();
 		if (fileLine.length() > 1 && !fileLine.startsWith("//")) {
-		    if (elev.isFull()) {
-			continue;
-			//Print out if elevator is full
+//		    if (elev.isFull()) {
+//			String[] passInfo = fileLine.split("\t");
+//			System.out.println(passInfo[0] + " tried to get onto the elevator at floor " + passInfo[1]
+//				+ " to get off at floor " + passInfo[2] + ", but the elevator was full.");
+
+		    // Print out if elevator is full
+//		    } else {
+		    String[] passInfo = fileLine.split("\t");
+		   
+		    Passenger newPass = new Passenger(passInfo[0], Integer.parseInt(passInfo[1]),
+			    Integer.parseInt(passInfo[2]));
+		    currentFloor = elev.whichFloor(newPass);
+		    elev.setCurrentFloor(currentFloor);
+		    System.out.println("Elevator at floor " + currentFloor);
+		    elev.removePassenger(currentFloor);
+		    if (!elev.isFull(newPass)) {
+
+			elev.setCurrentFloor(currentFloor);
+			elev.addPassenger(newPass);
+			elev.setIsFullTimes();
+			riders++;
+
+			// the elevator received a passenger into the stack
+			// then we have to figure out where the elevator should
+			// go next. and then add those people as passengers.
+		    } else if (elev.isFull(newPass)) {
+			elev.setCurrentFloor(currentFloor);
+			elev.setIsFullTimes();
 		    } else {
-			String[] passInfo = fileLine.split("\t");
-			Passenger newPass = new Passenger(passInfo[0], Integer.parseInt(passInfo[1]),
-				Integer.parseInt(passInfo[2]));
-
-
-			if (newPass.getFloorEntered() == currentFloor) {
-			    elev.setCurrentFloor(currentFloor);
-			    elev.removePassenger(currentFloor);
-			    elev.addPassenger(newPass);
-			    riders++;
-			    elev.whichFloor(newPass);
-			    // the elevator received a passenger into the stack
-			    // then we have to figure out where the elevator should
-			    // go next. and then add those people as passengers.
-			}
-			else {
-				int floorDest = elev.whichFloor(newPass);
-				currentFloor = floorDest;
-			}
+			elev.addPassenger(newPass);
+			riders++;
+			elev.setIsFullTimes();
 		    }
 		}
 	    }
+
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	Elevator elevator;
-
+	
+	elev.printStats();
+	
+	file.close();
+	input.close();
     }
     /* @formatter:off
     	 * # Dang ol' Elevator Problem

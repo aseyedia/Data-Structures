@@ -4,7 +4,7 @@ public class Passenger
 		private String name;
 		private int floorEntered;
 		private int floorExited;
-		private int numTimesTemp;
+		private int numTimesTemp =0;
 
 		public Passenger(String name, int floorEntered, int floorExited)
 			{
@@ -43,9 +43,10 @@ public class Passenger
 				this.numTimesTemp = numTimesTemp;
 			}
 
-		public void numTimesTemp()
+		public int numTimesTemp()
 			{
 				numTimesTemp += 1;
+				return numTimesTemp;
 			}
 
 		public String getName()
