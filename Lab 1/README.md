@@ -15,3 +15,9 @@ This is an elevator simulation program which uses stacks to load and unload pass
 ## Documentation
 
 Refer to javadocs, in the doc folder for more information.
+
+## Author
+
+Arta Seyedian
+
+
