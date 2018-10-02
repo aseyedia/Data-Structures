@@ -12,22 +12,31 @@ Rats	3	2	7
 Brats	2	1	2
 Cats	3	1	7
 Putin	3	1	8
-Blue	3	2	2
-Dewey	3	4	9
-Gick	4	5	2
-Pugh	3	5	16
+Blue	3	1	50
+Dewey	3	1	15
+Pugh	3	1	16
+Vats	1	2	2
+Tower	3	1	10
+Cower	3	1	8
 Brick	3	2	2
-Tower	3	2	15
 Vick	2	3	2
-Cower	3	1	14
 Pick	5	4	2
 Sony	4	3	2
 Phony	3	4	2
 Tony	3	1	10
 Toast	3	2	7
-Gator	3	5	2
-Most	2	5	7
+Most	2	5	8
+Gross	1	5	10
 
 People who took the stairs:
 
-Number of times the elevator was full: 0 Number of times the elevator was empty: 18 Number of times the elevator was ridden: 30
+Screw	3	1	0
+Baloon	3	1	0
+Baffoon	3	1	0
+June	3	1	0
+Spitoon	3	1	0
+Boon	3	1	0
+Spoon	3	1	0
+Racoon	3	1	0
+Gator	3	5	0
+Number of times the elevator was full: 9 Number of times the elevator was empty: 20 Number of times the elevator was ridden: 30
