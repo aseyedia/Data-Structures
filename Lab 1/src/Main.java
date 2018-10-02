@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  * This is the main java class in which the elevator program will run.
@@ -29,7 +27,7 @@ public class Main {
 	Elevator elevNonFunctioning = new Elevator(false, null);
 	// use array
 	BufferedReader file = new BufferedReader(new FileReader(fileName));
-
+	
 	try {
 	    while (file.ready()) {
 		String fileLine = file.readLine();
@@ -42,15 +40,16 @@ public class Main {
 		    // Print out if elevator is full
 //		    } else {
 		    String[] passInfo = fileLine.split("\t");
+		   
 		    Passenger newPass = new Passenger(passInfo[0], Integer.parseInt(passInfo[1]),
 			    Integer.parseInt(passInfo[2]));
 		    currentFloor = elev.whichFloor(newPass);
+		    elev.setCurrentFloor(currentFloor);
 		    System.out.println("Elevator at floor " + currentFloor);
-
-		    if (!elev.isFull() && newPass.getFloorEntered() == currentFloor) {
+		    elev.removePassenger(currentFloor);
+		    if (!elev.isFull(newPass)) {
 
 			elev.setCurrentFloor(currentFloor);
-			elev.removePassenger(currentFloor);
 			elev.addPassenger(newPass);
 			elev.setIsFullTimes();
 			riders++;
@@ -58,27 +57,26 @@ public class Main {
 			// the elevator received a passenger into the stack
 			// then we have to figure out where the elevator should
 			// go next. and then add those people as passengers.
-		    } else if (elev.isFull() && newPass.getFloorEntered() == currentFloor) {
+		    } else if (elev.isFull(newPass)) {
 			elev.setCurrentFloor(currentFloor);
-			elev.removePassenger(currentFloor);
-			if (elev.isFull()) {
-			    System.out.println(newPass.getName() + " had to take the stairs.");
-			    elev.setIsFullTimes();
-			} else {
-			    elev.addPassenger(newPass);
-			    riders++;
-			    elev.setIsFullTimes();
-			}
+			elev.setIsFullTimes();
+		    } else {
+			elev.addPassenger(newPass);
+			riders++;
+			elev.setIsFullTimes();
 		    }
-//		    }
 		}
 	    }
+
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	Elevator elevator;
-
+	
+	elev.printStats();
+	
+	file.close();
+	input.close();
     }
     /* @formatter:off
     	 * # Dang ol' Elevator Problem
