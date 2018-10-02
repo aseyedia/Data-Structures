@@ -14,7 +14,8 @@ import java.io.*;
 public class Main
     {
 
-        public static void main(String[] args) throws IOException
+        public static void main(String[] args)
+                throws IOException, FileNotFoundException
             {
 
                 int currentFloor = 1;
@@ -25,9 +26,15 @@ public class Main
                 Elevator elev = new Elevator(true, passengers);
                 Elevator elevNonFunctioning = new Elevator(false, null);
                 // use array
-                BufferedReader file =
-                        new BufferedReader(new FileReader(fileName));
-
+                BufferedReader file = null;
+                try
+                    {
+                        file = new BufferedReader(new FileReader(fileName));
+                    } catch (FileNotFoundException e)
+                    {
+                        System.err
+                                .println(e.getMessage() + ": file not found");
+                    }
                 try
                     {
                         while (file.ready())
@@ -78,10 +85,10 @@ public class Main
 
                     } catch (IOException e)
                     {
-                        System.err.println(
-                                e.getMessage() + ": file not available");
+                        System.err.println(e.getMessage()
+                                + ": something unfortunate happened and"
+                                + " I'm just glad you're okay");
                     }
-
                 elev.printStats(fileName);
                 // printing stats to file using the Elevator
                 // method, then closing all active streams
