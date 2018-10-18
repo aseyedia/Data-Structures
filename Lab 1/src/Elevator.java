@@ -24,14 +24,11 @@ public class Elevator
         private int tempTop = -1;
         private boolean tempElevatorEmpty;
         private boolean isFunctional;
-        private boolean direction;
         private boolean isFull;
-        private int isFullTimes = 0;
+        private int isFullNotAgain = 0;
         private boolean elevatorEmpty;
-        private int tempCounter = 0;
         private int timesEmpty = 0;
         private int isFullCounter = 0;
-        private int isEmptyCounter = 0;
         private int currentFloor = 1;
         private int numRode = 0;
         private Passenger[] elevatorPass = new Passenger[5];
@@ -95,8 +92,9 @@ public class Elevator
         /**
          * Pushes an integer onto the stack.
          * 
-         * @param number
+         * @param passenger
          *            An integer to push onto the top of the stack.
+         * @return The top-most value in the elevator stack
          */
         public Passenger push(Passenger passenger)
             {
@@ -132,8 +130,9 @@ public class Elevator
         /**
          * Pushes an integer onto the stack.
          * 
-         * @param number
+         * @param passenger
          *            An integer to push onto the top of the stack.
+         * @return The top-most item in the temp elevator stack
          */
         public Passenger tempPush(Passenger passenger)
             {
@@ -172,7 +171,6 @@ public class Elevator
                                         System.out.println(tempPop().getName()
                                                 + " got off the elevator at floor "
                                                 + currentFloor);
-                                       
 
                                         // } else if (i < top + 1) {
                                         // tempPush(pop());
@@ -204,11 +202,11 @@ public class Elevator
         public boolean isFull(Passenger passenger)
             {
                 this.isFull = false;
-                if (top == 4 && isFullTimes == 0)
+                if (top == 4 && isFullNotAgain == 0)
                     {
                         this.isFull = true;
                         this.isFullCounter += 1;
-                        this.isFullTimes += 1;
+                        this.isFullNotAgain += 1;
                         if (passenger.getFloorEntered() == currentFloor)
                             {
                                 System.out.println("The elevator is full and "
@@ -225,9 +223,9 @@ public class Elevator
          * taking the stairs and displaying the isFull message multiple times
          * in the same main while-loop iteration.
          */
-        public void setIsFullTimes()
+        public void setIsFullNotAgain()
             {
-                this.isFullTimes = 0;
+                this.isFullNotAgain = 0;
 
             }
 
@@ -372,11 +370,15 @@ public class Elevator
 
         /**
          * Prints total statistics for the entire activity as observed by the
-         * "GoPro" mounted in the elevator. Takes the fileName to generate 
-         * an output file
+         * "GoPro" mounted in the elevator. Takes the fileName to generate an
+         * output file
          * 
          * elevatorHeaven is where people go when they leave the elevator.
          * stairJail is where people go when they have to take the stairs.
+         * 
+         * @param fileName
+         *            The name of the file that will be used to print the
+         *            output
          * 
          * @throws IOException
          *             Exception that probably indicates an inability to write
@@ -385,8 +387,8 @@ public class Elevator
         public void printStats(String fileName) throws IOException
             {
                 fileName = fileName.substring(0, 5);
-                PrintWriter print = new PrintWriter(
-                        new FileWriter(fileName + "_output.txt", false));
+                PrintWriter print = new PrintWriter(new FileWriter(
+                        fileName.trim() + "_output.txt", false));
                 int i = 0;
                 print.println("The following data are those of the people "
                         + "who rode this elevator."
@@ -419,8 +421,8 @@ public class Elevator
                     }
                 print.println("Number of times the elevator was full: "
                         + isFullCounter + " " + "Number of times the elevator"
-                        + " was empty: " + timesEmpty
-                        + " " + "Number of times the elevator was ridden: "
+                        + " was empty: " + timesEmpty + " "
+                        + "Number of times the elevator was ridden: "
                         + numRode);
                 print.close();
 
