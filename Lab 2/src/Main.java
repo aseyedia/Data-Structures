@@ -20,16 +20,27 @@ public class Main {
 		// matrix will define how many possible
 		// direct connections the vertex in question
 		// can have
-		char dims = (char) file.read();
+		int dims = Character.getNumericValue((char) file.read());
+		// in the case of a two digit dimension
+		char next = (char) file.read();
+		if (next == '\n' || next == ' ') {
+		    // sometimes java is weird and the converse of this
+		    // if statement doesn't work
+		} else {
+		    dims = dims * 10 + Character.getNumericValue(next);
+		}
 
+		// This array holds the vertices that
+		// are in
+		// each adjacency graph
+		Vertex[] verts = new Vertex[dims];
+		// Have to line break so the dimension line
+		// doesn't get counted as a row
 		for (int row = 0; row < dims; row++)
 		// Maybe create an array of 1's and 0's for
 		// each vertex
 		{
-		    // This array holds the vertices that
-		    // are in
-		    // each adjacency graph
-		    Vertex[] verts = new Vertex[dims];
+
 		    // The vert object is created with i
 		    // as its ID
 		    // and dims as the max number of
@@ -44,18 +55,26 @@ public class Main {
 		    // read into the vertex created above
 		    // in the
 		    // below for loop, and set
-		    for (int col = 0; col < dims; col++) {
+		    for (int col = 0; col < 2 * dims + 1; col++)
+		    // ERROR this is incrementing for whitespaces and linebreaks
+		    {
 			char connect = (char) file.read();
 			if (connect == '0' || connect == '1') {
-			    vert.setEdges(connect, row);
-			    // The array then stores the vertex
-			    // in the index of its ID (or
+			    vert.setEdges(Character.getNumericValue(connect), col / 2);
+			    // The array then stores
+			    // the vertex
+			    // in the index of its
+			    // ID (or
 			    // something)
 			    verts[row] = vert;
 			} else if (connect == (char) -1) {
 			    System.out.println("Reached end of file.");
 			    System.exit(0);
+
+			} else if (connect == ' ') {
+			    continue;
 			} else if (connect == '\n') {
+			    System.out.println();
 			    break;
 			}
 			System.out.print(connect);

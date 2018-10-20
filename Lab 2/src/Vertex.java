@@ -47,9 +47,9 @@ public class Vertex
                 return edges;
             }
 
-        public void setEdges(char edges, int i)
+        public void setEdges(int connect, int i)
             {
-                conn[i] = edges;
+                conn[i] = connect;
             }
         
     }
