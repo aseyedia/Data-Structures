@@ -21,14 +21,16 @@ public class Main {
 		// direct connections the vertex in question
 		// can have
 		int dims = Character.getNumericValue((char) file.read());
-		// in the case of a two digit dimension
-		char next = (char) file.read();
-		if (next == '\n' || next == ' ') {
-		    // sometimes java is weird and the converse of this
-		    // if statement doesn't work
-		} else {
-		    dims = dims * 10 + Character.getNumericValue(next);
-		}
+		file.read();
+		// in the case of a two digit dimension - THIS IS kind of fucked up, take care
+		// of it later
+		// char next = (char) file.read();
+		// if (boolean k = ) {
+		// // sometimes java is weird and the converse of this
+		// // if statement doesn't work
+		// } else {
+		// dims = dims * 10 + Character.getNumericValue(next);
+		// }
 
 		// This array holds the vertices that
 		// are in
@@ -55,7 +57,7 @@ public class Main {
 		    // read into the vertex created above
 		    // in the
 		    // below for loop, and set
-		    for (int col = 0; col < 2 * dims + 1; col++)
+		    for (int col = 0; col < 2 * dims + 2; col++)
 		    // ERROR this is incrementing for whitespaces and linebreaks
 		    {
 			char connect = (char) file.read();
@@ -72,12 +74,13 @@ public class Main {
 			    System.exit(0);
 
 			} else if (connect == ' ') {
-			    continue;
+			    // continue;
 			} else if (connect == '\n') {
-			    System.out.println();
+			    // System.out.println();
 			    break;
+			    
 			}
-			System.out.print(connect);
+			System.out.print(Character.toString(connect));
 		    }
 		}
 	    }
