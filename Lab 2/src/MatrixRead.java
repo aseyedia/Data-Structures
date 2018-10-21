@@ -40,20 +40,22 @@ public class MatrixRead {
 	 * dimensions (dims). Then, it creates an array based on the dimensions, and
 	 * sets the finally element to -1 as a marker of incompleteness. It then
 	 * interprets the matrix. Once it is done, it looks for another dimension.
+	 * @return 
 	 */
-	public void readMatrix(Graph graph) throws FileNotFoundException {
+	public int readMatrix(Graph graph) throws FileNotFoundException {
+		int dims = 0;
 		// May be redundant to have the hasNextLine function and
 		// the ready method, but it's okay
 		if (sc.hasNextLine()) {
-			int dims = sc.nextInt();
+			dims = sc.nextInt();
 			System.out.println(dims);
 			sc.nextLine();
 			int rows = dims;
 			int columns = dims;
-			int[][] myArray = new int[rows][columns];
-			myArray[rows - 1][columns - 1] = -1;
-			while (myArray[rows - 1][columns - 1] == -1) {
-				for (int i = 0; i < myArray.length; i++) {
+			int[][] matrix = new int[rows][columns];
+			matrix[rows - 1][columns - 1] = -1;
+			while (matrix[rows - 1][columns - 1] == -1) {
+				for (int i = 0; i < matrix.length; i++) {
 					String[] line = sc.nextLine().trim().split(" ");
 					// What I can do here is create a vertex for each
 					// row, and then commit the values of the matrix
@@ -63,14 +65,15 @@ public class MatrixRead {
 					// now that I'm thinking about it, a class that stores
 					// vertices or something. I'll figure it out.
 					for (int j = 0; j < line.length; j++) {
-						myArray[i][j] = Integer.parseInt(line[j]);
+						matrix[i][j] = Integer.parseInt(line[j]);
 					}
 				}
 			}
-			System.out.println(Arrays.deepToString(myArray));
+			System.out.println(Arrays.deepToString(matrix));
 			graph.setVertBankSize(dims);
-			exportVertex(myArray, graph);
+			exportVertex(matrix, graph);
 		}
+		return dims;
 	}
 
 	/**

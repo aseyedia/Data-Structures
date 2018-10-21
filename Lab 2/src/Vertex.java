@@ -1,35 +1,25 @@
 public class Vertex {
-    int edges;
-    char vert;
-    int[] conn;
-    int id;
+	int edges;
+	char vert;
+	int[] conn;
+	int id;
 
-    public Vertex(int id, int dims) {
-	super();
-	this.id = id;
-	this.conn = new int[dims];
-    }
-
-    public boolean hasNext() {
-	boolean next = false;
-	for (int i = 0; i < conn.length; i++) {
-	    if (conn[i] == 1) {
-		next = true;
-	    }
+	public Vertex(int id, int dims) {
+		super();
+		this.id = id;
+		this.conn = new int[dims];
 	}
-	return next;
 
-    }
-    
-    public int next() {
-	int next = null;
-	int i = 0;
-	while(next == null) {
-	    if (conn[i] == 1) {
-		next = i;
-	    }
+	public void setEdges(int[] myArray) {
+		this.conn = myArray;
+	}
+
+	public int getConn(int ind) {
+		return conn[ind];
 	}
 	
-	return next;
-    }
+	public int[] getConn() {
+		return conn;
+	}
+
 }
