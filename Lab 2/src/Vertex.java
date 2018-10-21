@@ -47,9 +47,9 @@ public class Vertex
                 return edges;
             }
 
-        public void setEdges(int connect, int i)
+        public void setEdges(int[] myArray)
             {
-                conn[i] = connect;
+               	this.conn = myArray;
             }
         
     }
