@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 		System.out.println("Please enter the full file name of the input.");
 		Scanner input = new Scanner(System.in);
-		String fileName = "PathsGraphInput.txt";
+		String fileName = "UserPathsGraphsInput (copy).txt";
 		try {
 			MatrixRead file = new MatrixRead(fileName);
 			while (file.ready()) {
