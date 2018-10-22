@@ -12,7 +12,6 @@ import java.util.Scanner;
  */
 public class Main
     {
-        // Remember to format this Intro to Java style
         /**
          * The main method accepts the name of the file to be processed. That
          * is the only thing it does, other than create other class objects

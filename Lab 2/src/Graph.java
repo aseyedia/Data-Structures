@@ -71,7 +71,7 @@ public class Graph
 
                 if (!stack.contains(id))
                     {
-                        stack.append(id);
+                        stack.push(id);
 
                         stack.print();
 
@@ -83,15 +83,18 @@ public class Graph
                                     {
                                         root = false;
                                         deepSearch(q, root, stack);
-
+                                        // deleting of the backtracked node
                                         if (q == vertBankSize - 1)
                                             {
-                                                stack.delete();
+                                                stack.pop();
                                             }
-
+                                        // deleting of the backtracked node
+                                        // but
+                                        // if getConn(q) != 1 but is still
+                                        // exhausted
                                     } else if (q == vertBankSize - 1)
                                     {
-                                        stack.delete();
+                                        stack.pop();
 
                                     } else if (vertBank[id].getConn(q) == 0)
                                     {
@@ -102,9 +105,9 @@ public class Graph
 
                     } else if (id == this.root)
                     {
-                        stack.append(id);
+                        stack.push(id);
                         stack.print();
-                        stack.delete();
+                        stack.pop();
                         return;
                     }
 
@@ -139,32 +142,45 @@ public class Graph
 
             }
 
+        /**
+         * A stack class defined within the graph class. Used to store paths.
+         * 
+         * @author Arta
+         *
+         */
         class Stack
             {
                 int[] path = new int[50];
                 int bottom = 0;
                 int top = 0;
 
-                public void append(int vert)
+                /**
+                 * Places the integer value corresponding to the vertex id to
+                 * the top of the stack.
+                 * 
+                 * @param vert
+                 */
+                public void push(int vert)
                     {
                         path[top] = vert;
                         top++;
                     }
 
-                public void delete()
+                /**
+                 * Returns and deletes the item on the top of the stack.
+                 * 
+                 */
+                public int pop()
                     {
 
-                        path[top] = 0;
-                        top--;
+                        return path[top--];
 
                     }
 
-                public void reset()
-                    {
-                        this.bottom = 0;
-                        this.top = 0;
-                    }
-
+                /**
+                 * Prints the entirety of the path.
+                 * 
+                 */
                 public void print()
                     {
                         for (int i = bottom; i < top; i++)
@@ -176,6 +192,17 @@ public class Graph
                         System.out.println();
                     }
 
+                /**
+                 * Special print method in instances where the id is not
+                 * appended to the path but must be printed with the rest of
+                 * the path nonetheless e.g. when there is no path connecting
+                 * them.
+                 * 
+                 * @param id
+                 *            The vertex identifier
+                 * @return String which contains the whole path including the
+                 *         vertex was not pushed
+                 */
                 public String sPrint(int id)
                     {
                         String real = "";
@@ -189,6 +216,13 @@ public class Graph
                         return real;
                     }
 
+                /**
+                 * Returns true if target vertex is not in the path.
+                 * 
+                 * @param targ
+                 *            The id of the target vertex
+                 * @return True if contained, false if not
+                 */
                 public boolean contains(int targ)
                     {
                         for (int i = 0; i < top; i++)
