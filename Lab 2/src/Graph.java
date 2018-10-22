@@ -18,13 +18,12 @@ public class Graph {
 
 	// IMPORTANT: this method counts as 'visited' even if
 	// you start on that node. fix it.
-	public void DFSUtil(int id, boolean visited[], boolean root, Stack stack) {
+	public void DFSUtil(int id, boolean root, Stack stack){
 		// Mark the current node as visited and print it
 
-		if (!visited[id]) {
+		if (!stack.contains(id)) {
 			stack.append(id);
 
-			visited[id] = true;
 			stack.print();
 			System.out.print("end path \n");
 
@@ -33,24 +32,17 @@ public class Graph {
 			for (int q = 0; q < vertBankSize; q++) {
 				if (vertBank[id].getConn(q) == 1) {
 					root = false;
-					DFSUtil(q, visited, root, stack);
+					DFSUtil(q, root, stack);
 
 					if (q == vertBankSize - 1) {
 						stack.delete();
-						visited[q] = false;
 					}
 
 				} else if (q == vertBankSize - 1) {
 					stack.delete();
-					visited [q] = false;
 					
 					
 				}
-//				else if (id == vertBankSize -1) {
-//					stack.delete();
-//					visited[q] = false;
-//					System.out.println("fuck");
-//				}
 			}
 
 		} else if (id == this.root) {
@@ -58,13 +50,12 @@ public class Graph {
 			stack.print();
 			System.out.print("end path \n");
 			stack.delete();
-			visited[id] = false;
-
 			return;
-		} else if (visited[id]) {
-
 		}
-//		visited[id] = false;
+		else {
+			System.out.print("XX NOT FOUND: ");
+			System.out.println(stack.sPrint(id));
+		}
 	}
 
 	// The function to do DFS traversal. It uses recursive DFSUtil()
@@ -76,7 +67,7 @@ public class Graph {
 		// Call the recursive helper function to print DFS traversal
 		setRootVert(id);
 		Stack kew = new Stack();
-		DFSUtil(id, visited, root, kew);
+		DFSUtil(id, root, kew);
 		System.out.println();
 
 	}
@@ -85,10 +76,6 @@ public class Graph {
 		int[] path = new int[50];
 		int bottom = 0;
 		int top = 0;
-
-//		public queue (int dims) {
-//			path = new int[dims];
-//		}
 
 		public void append(int vert) {
 			path[top] = vert;
@@ -99,7 +86,6 @@ public class Graph {
 
 			path[top] = 0;
 			top--;
-			System.out.println("Vertex " + path[top] + " has been removed from the path");
 
 		}
 
@@ -115,6 +101,27 @@ public class Graph {
 
 			}
 			System.out.println();
+		}
+		
+		public String sPrint(int id) {
+			String real = "";
+			for (int i = bottom; i < top; i++) {
+
+				real = real.concat(Integer.toString(path[i])) + " ";
+			}
+			real = real.concat(Integer.toString(id));
+			return real;
+		}
+		
+		public boolean contains(int targ) {
+			for (int i = 0; i < top; i++) {
+				if (path[i] == targ) {
+					
+				return true;	
+				}
+				
+			}
+			return false;
 		}
 
 	}
