@@ -16,6 +16,7 @@ public class Main {
 				Graph graph = new Graph();
 				int dims = file.readMatrix(graph);
 				for (int row = 0; row < dims; row++) {
+					System.out.println("Row: " + row);
 					graph.DFS(row);
 				}
 				System.out.println();

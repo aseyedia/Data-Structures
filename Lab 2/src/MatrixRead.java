@@ -48,7 +48,7 @@ public class MatrixRead {
 		// the ready method, but it's okay
 		if (sc.hasNextLine()) {
 			dims = sc.nextInt();
-			System.out.println(dims);
+			System.out.println("Dimensions: " + dims);
 			sc.nextLine();
 			int rows = dims;
 			int columns = dims;

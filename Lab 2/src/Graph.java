@@ -25,7 +25,6 @@ public class Graph {
 			stack.append(id);
 
 			stack.print();
-			System.out.print("end path \n");
 
 			// Recur for all the vertices adjacent to this vertex
 			// Implement a hasNext and next for the vertices
@@ -43,18 +42,25 @@ public class Graph {
 					
 					
 				}
+				else if (vertBank[id].getConn(q) == 0) {
+					System.out.print("XX NOT FOUND: ");
+					System.out.println(stack.sPrint(q));
+				}
 			}
 
 		} else if (id == this.root) {
 			stack.append(id);
 			stack.print();
-			System.out.print("end path \n");
 			stack.delete();
 			return;
 		}
+		
+		else if(stack.contains(id)) {
+			System.out.print("XX ALREADY VISITED: ");
+			System.out.println(stack.sPrint(id));			
+		}
 		else {
-			System.out.print("XX NOT FOUND: ");
-			System.out.println(stack.sPrint(id));
+			
 		}
 	}
 
@@ -68,7 +74,6 @@ public class Graph {
 		setRootVert(id);
 		Stack kew = new Stack();
 		DFSUtil(id, root, kew);
-		System.out.println();
 
 	}
 
