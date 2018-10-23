@@ -18,13 +18,13 @@ public class MatrixRead
     {
 
         String fileName;
-        Scanner sc;
+        Scanner fileRead;
 
         public MatrixRead(String fileName) throws FileNotFoundException
             {
                 // TODO Auto-generated constructor stub
                 this.fileName = fileName;
-                this.sc = new Scanner(
+                this.fileRead = new Scanner(
                         new BufferedReader(new FileReader(fileName)));
             }
 
@@ -51,11 +51,11 @@ public class MatrixRead
                 int dims = 0;
                 // May be redundant to have the hasNextLine function and
                 // the ready method in main, but it's okay
-                if (sc.hasNextLine())
+                if (fileRead.hasNextLine())
                     {
-                        dims = sc.nextInt();
+                        dims = fileRead.nextInt();
                         System.out.println("Dimensions: " + dims);
-                        sc.nextLine();
+                        fileRead.nextLine();
                         int rows = dims;
                         int columns = dims;
                         int[][] matrix = new int[rows][columns];
@@ -64,7 +64,7 @@ public class MatrixRead
                             {
                                 for (int i = 0; i < matrix.length; i++)
                                     {
-                                        String[] line = sc.nextLine().trim()
+                                        String[] line = fileRead.nextLine().trim()
                                                 .split(" ");
                                         for (int j = 0; j < line.length; j++)
                                             {
@@ -86,6 +86,11 @@ public class MatrixRead
          * 
          * @param myArray
          *            2-D array from the matrix which represents the graph
+         * 
+         * @param graph
+         *            The graph being passed from main that will be used for
+         *            processing
+         * 
          */
         public void exportVertex(int[][] myArray, Graph graph)
             {
@@ -102,7 +107,7 @@ public class MatrixRead
         public boolean ready()
             {
                 boolean ready = false;
-                if (sc.hasNextLine())
+                if (fileRead.hasNextLine())
                     {
                         ready = true;
                     }

@@ -159,6 +159,7 @@ public class Graph
                  * the top of the stack.
                  * 
                  * @param vert
+                 *            The id of the vertex to be pushed
                  */
                 public void push(int vert)
                     {
@@ -169,7 +170,9 @@ public class Graph
                 /**
                  * Returns and deletes the item on the top of the stack.
                  * 
+                 * @return The vertex id of the top-most item in stack
                  */
+
                 public int pop()
                     {
 
