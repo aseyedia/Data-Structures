@@ -14,7 +14,7 @@ This program takes a binary matrix of ixi dimensions and processes it as a graph
 
 ## Documentation
 
-Refer to javadocs, in the doc folder for more information.
+Refer to `index.html` in the doc folder for more information.
 
 ## Author
 
