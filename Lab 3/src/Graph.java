@@ -83,7 +83,7 @@ public class Graph
                                 if (vertBank[id].getConn(q).getBinValue() == 1)
                                     {
                                         root = false;
-                                        deepSearch(q, root, stack);
+                                        deepSearch(vertBank[id].getConn(q).getNextVert(), root, stack);
                                         // deleting of the backtracked node
                                         if (q == vertBankSize - 1)
                                             {
