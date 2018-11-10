@@ -47,7 +47,7 @@ public class Vertex
          * @return Binary 1/0 representing whether there is a connection there
          *         or not
          */
-        public int getConn(int ind)
+        public Node getConn(int ind)
             {
                 return conn[ind];
             }

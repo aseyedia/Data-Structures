@@ -79,7 +79,7 @@ public class Graph
                         // Implement a hasNext and next for the vertices
                         for (int q = 0; q < vertBankSize; q++)
                             {
-                                if (vertBank[id].getConn(q) == 1)
+                                if (vertBank[id].getConn(q).getBinValue() == 1)
                                     {
                                         root = false;
                                         deepSearch(q, root, stack);
@@ -96,7 +96,7 @@ public class Graph
                                     {
                                         stack.pop();
 
-                                    } else if (vertBank[id].getConn(q) == 0)
+                                    } else if (vertBank[id].getConn(q).getBinValue() == 0)
                                     {
                                         System.out.print("XX NOT FOUND: ");
                                         System.out.println(stack.sPrint(q));
