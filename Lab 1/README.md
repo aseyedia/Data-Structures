@@ -9,7 +9,7 @@ This is an elevator simulation program which uses stacks to load and unload pass
 ## Requirements
 
 - Java version 7 or 8
-- JDK 1.7 or 1,8
+- JDK 1.7 or 1.8
 - IDE, either IntelliJ or Eclipse preferred
 
 ## Documentation
