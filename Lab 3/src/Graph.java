@@ -79,6 +79,7 @@ public class Graph
                         // Implement a hasNext and next for the vertices
                         for (int q = 0; q < vertBankSize; q++)
                             {
+                            	// changed to reading each node's binary value
                                 if (vertBank[id].getConn(q).getBinValue() == 1)
                                     {
                                         root = false;
