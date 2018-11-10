@@ -63,7 +63,6 @@ public class MatrixRead {
 	    // that's probably what
 	    // I'm gonna do.
 	    int[][] matrix = new int[rows][columns];
-	    matrix[rows - 1][columns - 1] = -1;
 	    // Will take care of above later; that's irrelevant to
 	    // the proj
 	    // below is the linked row holder, each element
@@ -73,7 +72,7 @@ public class MatrixRead {
 	    // has with other vertices
 	    LinkedStruct rowHold = new LinkedStruct(rows);
 
-	    while (matrix[rows - 1][columns - 1] == -1) {
+	    while (rowHold.hasRoom()) {
 
 		for (int i = 0; i < matrix.length; i++) {
 		    // This is the linked structure of the
@@ -92,15 +91,16 @@ public class MatrixRead {
 			// value to it and point to vertex to
 			// which it references, which
 			// is the array index (I think)
-			Node node = new Node(j, Integer.parseInt(line[j]));
+			Node node = new Node(Integer.parseInt(line[j]), j);
 			// apply this to the row array of edges
 			rowVal.setRowVal(j, node);
 		    }
+		    rowHold.setRowHold(rowVal, i);
 		}
 	    }
-	    System.out.println(Arrays.deepToString(matrix));
 	    graph.setVertBankSize(dims);
-	    exportVertex(matrix, graph);
+	    // changed to linked structure
+	    exportVertex(rowHold, graph);
 	}
 	return dims;
     }
@@ -108,19 +108,21 @@ public class MatrixRead {
     /**
      * Generates vertices from the array, returns them to be stored in main.
      * 
-     * @param myArray
+     * @param rowHold
      *            2-D array from the matrix which represents the graph
      * 
      * @param graph
      *            The graph being passed from main that will be used for processing
      * 
      */
-    public void exportVertex(int[][] myArray, Graph graph) {
-	for (int i = 0; i < myArray.length; i++) {
+    public void exportVertex(LinkedStruct rowHold, Graph graph) {
+	for (int i = 0; i < rowHold.getSize().length; i++) {
 	    // Create a vertex with id of i and
-	    // dimensions of myArray.length
-	    Vertex vert = new Vertex(i, myArray.length);
-	    vert.setEdges(myArray[i]);
+	    // dimensions of rowHold.getSize().length
+	    Vertex vert = new Vertex(i, rowHold.getSize().length);
+	    // Changed this to get each element of the row holder and retrieve that
+	    // element's set of nodes
+	    vert.setEdges(rowHold.getRowHoldIndex(i).getSize());
 	    graph.setVert(i, vert);
 	}
     }

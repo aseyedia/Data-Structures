@@ -8,7 +8,7 @@
  */
 public class Vertex
     {
-        private int[] conn;
+        private Node[] conn;
         private int id;
         private Vertex nextVert;
 
@@ -24,7 +24,7 @@ public class Vertex
             {
                 super();
                 this.id = id;
-                this.conn = new int[dims];
+                this.conn = new Node[dims];
             }
 
         /**
@@ -34,7 +34,7 @@ public class Vertex
          * @param myArray
          *            Binary array of the vertex
          */
-        public void setEdges(int[] myArray)
+        public void setEdges(Node[] myArray)
             {
                 this.conn = myArray;
             }

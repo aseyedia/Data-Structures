@@ -9,22 +9,61 @@ public class LinkedStruct {
     // some LinkedStructs are use to hold int values, and while you could
     // potentially use both, for this project,
     // that likely would not happen.
-    private LinkedStruct[] row;
+    // private LinkedStruct[] row;
     // This points to the next LinkedStruct only; the use of this variable is
     // tentative.
     private LinkedStruct next;
+    
+    // LinkedStruct array to hold
+    private LinkedStruct[] rowHold;
 
-    public LinkedStruct[] getRow() {
-	return row;
+    // public LinkedStruct[] getRow() {
+    // return row;
+    // }
+    //
+    // public void setRow(LinkedStruct[] row) {
+    // this.row = row;
+    // }
+
+    public LinkedStruct[] getRowHold() {
+        return rowHold;
     }
 
-    public void setRow(LinkedStruct[] row) {
-	this.row = row;
+    public void setRowHold(LinkedStruct vert, int row) {
+        this.rowHold[row] = vert;
+    }
+
+    public Node[] getSize() {
+        return size;
+    }
+    
+    public LinkedStruct getRowHoldIndex(int ind) {
+        return rowHold[ind];
+    }
+
+    public void setSize(Node[] size) {
+        this.size = size;
+    }
+
+    public LinkedStruct getNext() {
+        return next;
+    }
+
+    public void setNext(LinkedStruct next) {
+        this.next = next;
     }
 
     public LinkedStruct(int rows) {
 	this.size = new Node[rows];
+	this.rowHold = new LinkedStruct[rows];
 
+    }
+    
+    public boolean hasRoom() {
+	if (rowHold[rowHold.length -1] == null) {
+	    return true;
+	}
+	return false;
     }
 
     /**
