@@ -6,7 +6,7 @@ This program is a spin on the previous lab, which takes a binary matrix of i * i
 
 ## Requirements
 - Java version 7 or 8
-- JDK 1.7 or 1,8
+- JDK 1.7 or 1.8
 - IDE, either IntelliJ or Eclipse preferred
 
 ## Documentation
