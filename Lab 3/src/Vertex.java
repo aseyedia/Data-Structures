@@ -10,6 +10,7 @@ public class Vertex
     {
         private int[] conn;
         private int id;
+        private Vertex nextVert;
 
         /**
          * Constructor for creating a vertex

@@ -6,9 +6,9 @@
  */
 public class Graph
     {
-        Vertex[] vertBank;
-        int vertBankSize;
-        int root;
+        private Vertex[] vertBank;
+        private int vertBankSize;
+        private int root;
 
         /**
          * Basically the same as vertBank.length - Is the int size of the list
