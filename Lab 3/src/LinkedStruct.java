@@ -45,7 +45,7 @@ public class LinkedStruct {
         this.size = size;
     }
 
-    public LinkedStruct getNext() {
+    public LinkedStruct getNext(LinkedStruct parentStruct) {
         return next;
     }
 
