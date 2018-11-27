@@ -14,40 +14,44 @@ public class Node
         // This is the node directly following it in the vertex list
         private int nextVert;
         // This is the vertex that the edge is pointing to for path-building
-        
+
         // Can't have a constructor with duplicate object types as parameters
 
-        public Node(int binValue, int i)
+        /**
+         * Constructor for node; accepts binary value and int for next vertex
+         * as arguments and creates a node
+         * 
+         * @param binValue
+         *            0 or 1 to indicate presence of edge
+         * @param nextVert
+         *            Integer value for the next vertex
+         */
+        public Node(int binValue, int nextVert)
             {
                 super();
                 this.binValue = binValue;
-                this.nextVert = i;
+                this.nextVert = nextVert;
             }
 
-        public Node(int binValue)
-            {
-                super();
-                this.binValue = binValue;
-            }
-
+        /**
+         * Retrieves the binary value for that node, either 1 or 0 int
+         * 
+         * @return An integer, 0 or 1, for the existence of an edge as
+         *         represented by this node
+         */
         public int getBinValue()
             {
                 return binValue;
             }
 
-        public void setBinValue(int binValue)
+        /**
+         * Method for returning the vertex this node/edge points to
+         * 
+         * @return Vertex of focus
+         */
+        public int getNextVert()
             {
-                this.binValue = binValue;
+                return nextVert;
             }
-
-	public int getNextVert() {
-	    return nextVert;
-	}
-
-	public void setNextVert(int nextVert) {
-	    this.nextVert = nextVert;
-	}
-
-
 
     }

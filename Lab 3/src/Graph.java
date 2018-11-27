@@ -79,11 +79,15 @@ public class Graph
                         // Implement a hasNext and next for the vertices
                         for (int q = 0; q < vertBankSize; q++)
                             {
-                            	// changed to reading each node's binary value
-                                if (vertBank[id].getConn(q).getBinValue() == 1)
+                                // changed to reading each node's binary value
+                                if (vertBank[id].getConn(q)
+                                        .getBinValue() == 1)
                                     {
                                         root = false;
-                                        deepSearch(vertBank[id].getConn(q).getNextVert(), root, stack);
+                                        deepSearch(
+                                                vertBank[id].getConn(q)
+                                                        .getNextVert(),
+                                                root, stack);
                                         // deleting of the backtracked node
                                         if (q == vertBankSize - 1)
                                             {
@@ -97,7 +101,8 @@ public class Graph
                                     {
                                         stack.pop();
 
-                                    } else if (vertBank[id].getConn(q).getBinValue() == 0)
+                                    } else if (vertBank[id].getConn(q)
+                                            .getBinValue() == 0)
                                     {
                                         System.out.print("XX NOT FOUND: ");
                                         System.out.println(stack.sPrint(q));

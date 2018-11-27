@@ -8,9 +8,10 @@
  */
 public class Vertex
     {
+        // The edges of the vertex
         private Node[] conn;
+        // The id of the vertex in the graph
         private int id;
-//        private int nextVert;
 
         /**
          * Constructor for creating a vertex
@@ -43,6 +44,8 @@ public class Vertex
          * Gets a connection at a certain vertex ID.
          * 
          * @param ind
+         *            Index of vertex's connections that should be retrieved
+         * 
          *            The row id of the vertex
          * @return Binary 1/0 representing whether there is a connection there
          *         or not
