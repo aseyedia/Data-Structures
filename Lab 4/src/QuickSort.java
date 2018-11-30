@@ -237,14 +237,18 @@ public class QuickSort {
 	public void printArray(int arr[], String fileName, int sortType) throws IOException {
 		int n = arr.length;
 
-		if (sortType == 0) {
-			System.out.println("QuickSort Standard");
-		} else if (sortType == 1) {
+		switch (sortType) {
+		case 0: System.out.println("QuickSort Standard");
+			break;
+		case 1:  
 			System.out.println("QuickSort 100");
-		} else if (sortType == 2) {
+			break;
+		case 2:  
 			System.out.println("QuickSort 50");
-		} else if (sortType == 3) {
+			break;
+		case 3:  
 			System.out.println("QuickSort Median-of-Three");
+			break;
 		}
 		System.out.print("Name of data file: " + fileName + "\n");
 		for (int i = 0; i < n; ++i)

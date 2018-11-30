@@ -42,7 +42,8 @@ public class Main {
 			int arr[] = nums;
 			int n = arr.length;
 
-			QuickSort ob = new QuickSort();
+			QuickSort quickSort = new QuickSort();
+			NatMergeSort natMerSort = new NatMergeSort();
 			// 0 for Select the first item of the partition as the pivot.
 			// Treat
 			// partitions
@@ -62,57 +63,24 @@ public class Main {
 			// of size one
 			// and two as stopping cases.
 			int[] hold = arr;
-			ob.sort(arr, 0, n - 1, 0);
-			ob.printArray(arr, fileNames[i], 0);
+			quickSort.sort(arr, 0, n - 1, 0);
+			quickSort.printArray(arr, fileNames[i], 0);
 			arr = hold;
-			ob.sort(arr, 0, n - 1, 1);
-			ob.printArray(arr, fileNames[i], 1);
+			quickSort.sort(arr, 0, n - 1, 1);
+			quickSort.printArray(arr, fileNames[i], 1);
 			arr = hold;
-			ob.sort(arr, 0, n - 1, 2);
-			ob.printArray(arr, fileNames[i], 2);
-			ob.sort(arr, 0, n - 1, 2);
-			ob.printArray(arr, fileNames[i], 3);
+			quickSort.sort(arr, 0, n - 1, 2);
+			quickSort.printArray(arr, fileNames[i], 2);
+			arr = hold;
+			quickSort.sort(arr, 0, n - 1, 3);
+			quickSort.printArray(arr, fileNames[i], 3);
+			arr = hold;
+			// Natural Merge Sort
+			natMerSort.xFer(arr, fileNames[i]);
+			
 			System.out.println("Number of files sorted: " + i);
-			// QuickSort.printArray(arr);
-
-			// }
 		}
-		// end block
+
 
 	}
 }
-/* @formatter:off
- * 
-                                for (int i = 0; i < dims; i++)
-                                    {
-                                        // This is the linked structure of the
-                                        // row itself
-                                        LinkedStruct rowVal =
-                                                new LinkedStruct(columns);
-                                        // read row
-                                        String[] line = fileRead.nextLine()
-                                                .trim().split(" ");
-
-                                        for (int j = 0; j < line.length; j++)
-                                            {
-                                                // Lab 3: is this where I
-                                                // should potentially make
-                                                // into a linked list
-                                                // the matrix???
-
-                                                // make a node, pass the bin
-                                                // value to it and point to
-                                                // vertex to
-                                                // which it references, which
-                                                // is the array index (I
-                                                // think)
-                                                Node node = new Node(Integer
-                                                        .parseInt(line[j]),
-                                                        j);
-                                                // apply this to the row array
-                                                // of edges
-                                                rowVal.setRowVal(j, node);
-                                            }
-                                        rowHold.setRowHold(rowVal, i);
-                                    }
- */
