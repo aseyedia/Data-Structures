@@ -17,58 +17,66 @@ public class Main {
 		File[] fileArr = directory.listFiles();
 		String[] fileNames;
 
-		// Below is a code that reads all of the raw data into a 2D array
-		// The ArrayList is only used to hold the values of each file to be
-		// transferred to the 2D array
-		int[][] nums = new int[fileArr.length][];
+		fileNames = new String[fileArr.length];
+		for (int p = 0; p < fileArr.length; p++) {
+			fileNames[p] = fileArr[p].getName();
+		}
+		int[] nums;
 		for (int i = 0; i < fileArr.length; i++) {
 			ArrayList<String> line = new ArrayList<String>();
 			fileRead = new Scanner(
 					new BufferedReader(new FileReader(fileArr[i])));
-			while (fileRead.hasNext() != false) {
+
+			while (fileRead.hasNext()) {
 				line.add(fileRead.next());
 			}
-			nums[i] = new int[line.size()];
+			nums = new int[line.size()];
 			for (int q = 0; q < line.size(); q++) {
-				nums[i][q] = Integer.parseInt(line.get(q));
+				nums[q] = Integer.parseInt(line.get(q));
 			}
-			fileRead.close();
+
+//			fileArr = null;
+//			directory = null;
+
+//			for (int q = 0; q < fileNames.length; q++) {
+				int arr[] = nums;
+				int n = arr.length;
+
+				QuickSort ob = new QuickSort();
+				// 0 for Select the first item of the partition as the pivot.
+				// Treat
+				// partitions
+				// of size one and two as stopping cases.
+				// 1 for Select the first item of the partition as the pivot.
+				// Treat
+				// a partition
+				// of size 100 as a stopping case. Use an insertion sort to
+				// finish.
+				// 2 for Select the first item of the partition as the pivot.
+				// Treat
+				// a partition
+				// of size 50 as a stopping case. Use an insertion sort to
+				// finish.
+				// 3 for Select the median-of-three as the pivot. Treat
+				// partitions
+				// of size one
+				// and two as stopping cases.
+				int[] hold = arr;
+				ob.sort(arr, 0, n - 1, 0);
+				ob.printArray(arr, fileNames[i], 0);
+				arr = hold;
+				ob.sort(arr, 0, n - 1, 1);
+				ob.printArray(arr, fileNames[i], 1);
+				arr = hold;
+				ob.sort(arr, 0, n - 1, 2);
+				ob.printArray(arr, fileNames[i], 2);
+				System.out.println("Number of files sorted: " + i);
+				// QuickSort.printArray(arr);
+
+//			}
 		}
 		// end block
-		fileNames = new String[fileArr.length];
-		for (int i = 0; i < fileArr.length; i++) {
-			fileNames[i] = fileArr[i].getName();
-		}
-		fileArr = null;
-		directory = null;
 
-		for (int i = 0; i < nums.length; i++) {
-			int arr[] = nums[i];
-			int n = arr.length;
-
-			QuickSort ob = new QuickSort();
-			// 0 for Select the first item of the partition as the pivot. Treat
-			// partitions
-			// of size one and two as stopping cases.
-			// 1 for Select the first item of the partition as the pivot. Treat
-			// a partition
-			// of size 100 as a stopping case. Use an insertion sort to finish.
-			// 2 for Select the first item of the partition as the pivot. Treat
-			// a partition
-			// of size 50 as a stopping case. Use an insertion sort to finish.
-			// 3 for Select the median-of-three as the pivot. Treat partitions
-			// of size one
-			// and two as stopping cases.
-			ob.sort(arr, 0, n - 1, 0);
-			ob.printArray(arr, fileNames[i],0);
-			ob.sort(arr, 0, n - 1, 1);
-			ob.printArray(arr, fileNames[i],1);
-			ob.sort(arr, 0, n - 1, 2);
-			ob.printArray(arr, fileNames[i],2);
-			System.out.println("Number of files sorted: " + i);
-//			QuickSort.printArray(arr);
-
-		}
 	}
 }
 /* @formatter:off
