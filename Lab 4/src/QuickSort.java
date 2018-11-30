@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 // Java program for implementation of QuickSort
 public class QuickSort {
@@ -117,6 +120,75 @@ public class QuickSort {
 		return i - 1;
 	}
 
+	/**
+	 * Median-of-three quicksort, sourced in whole from “Quick Sort with
+	 * Median-of-Three Partitioning : Sort « Collections « Java Tutorial.” (see
+	 * References)
+	 * 
+	 * @param intArray
+	 * @param left
+	 * @param right
+	 * @return
+	 */
+	public static int medianOf3(int[] intArray, int left, int right) {
+		int center = (left + right) / 2;
+
+		if (intArray[left] > intArray[center])
+			swap(intArray, left, center);
+
+		if (intArray[left] > intArray[right])
+			swap(intArray, left, right);
+
+		if (intArray[center] > intArray[right])
+			swap(intArray, center, right);
+
+		swap(intArray, center, right - 1);
+		return intArray[right - 1];
+	}
+
+	public static void swap(int[] intArray, int dex1, int dex2) {
+		int temp = intArray[dex1];
+		intArray[dex1] = intArray[dex2];
+		intArray[dex2] = temp;
+	}
+
+	public static int partitionIt(int[] intArray, int left, int right,
+			double pivot) {
+		int leftPtr = left;
+		int rightPtr = right - 1;
+
+		while (true) {
+			while (intArray[++leftPtr] < pivot)
+				;
+			while (intArray[--rightPtr] > pivot)
+				;
+			if (leftPtr >= rightPtr)
+				break;
+			else
+				swap(intArray, leftPtr, rightPtr);
+		}
+		swap(intArray, leftPtr, right - 1);
+		return leftPtr;
+	}
+
+	public static void manualSort(int[] intArray, int left, int right) {
+		int size = right - left + 1;
+		if (size <= 1)
+			return;
+		if (size == 2) {
+			if (intArray[left] > intArray[right])
+				swap(intArray, left, right);
+			return;
+		} else {
+			if (intArray[left] > intArray[right - 1])
+				swap(intArray, left, right - 1);
+			if (intArray[left] > intArray[right])
+				swap(intArray, left, right);
+			if (intArray[right - 1] > intArray[right])
+				swap(intArray, right - 1, right);
+		}
+	}
+
 	/*
 	 * The main function that implements QuickSort() arr[] --> Array to be
 	 * sorted, low --> Starting index, high --> Ending index
@@ -148,20 +220,33 @@ public class QuickSort {
 				sort(arr, low, pi - 1, 1);
 				sort(arr, pi + 1, high, 1);
 			}
+		} else if (low < high && sortKind == 3) {
+			int size = high - low + 1;
+			if (size <= 3)
+				manualSort(arr, low, high);
+			else {
+				double median = medianOf3(arr, low, high);
+				int partition = partitionIt(arr, low, high, median);
+				sort(arr, low, partition - 1, 3);
+				sort(arr, partition + 1, high, 3);
+			}
 		}
 	}
 
 	/* A utility function to print array of size n */
-	public void printArray(int arr[], String fileArr, int sortType) {
+	public void printArray(int arr[], String fileName, int sortType) throws IOException {
 		int n = arr.length;
+
 		if (sortType == 0) {
 			System.out.println("QuickSort Standard");
 		} else if (sortType == 1) {
 			System.out.println("QuickSort 100");
 		} else if (sortType == 2) {
 			System.out.println("QuickSort 50");
+		} else if (sortType == 3) {
+			System.out.println("QuickSort Median-of-Three");
 		}
-		System.out.print("Name of data file: " + fileArr + "\n");
+		System.out.print("Name of data file: " + fileName + "\n");
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + " ");
 		System.out.println();

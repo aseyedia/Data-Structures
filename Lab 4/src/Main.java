@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Main {
 	// Driver program
-	public static void main(String args[]) throws FileNotFoundException {
+	public static void main(String args[]) throws IOException {
 		Scanner fileRead;
 		// Name of the directory
 		String dirName = "/home/arta/Documents/GitHub/Data-Structures/Lab 4/Lab 4 Input Files/";
@@ -35,45 +35,47 @@ public class Main {
 				nums[q] = Integer.parseInt(line.get(q));
 			}
 
-//			fileArr = null;
-//			directory = null;
+			// fileArr = null;
+			// directory = null;
 
-//			for (int q = 0; q < fileNames.length; q++) {
-				int arr[] = nums;
-				int n = arr.length;
+			// for (int q = 0; q < fileNames.length; q++) {
+			int arr[] = nums;
+			int n = arr.length;
 
-				QuickSort ob = new QuickSort();
-				// 0 for Select the first item of the partition as the pivot.
-				// Treat
-				// partitions
-				// of size one and two as stopping cases.
-				// 1 for Select the first item of the partition as the pivot.
-				// Treat
-				// a partition
-				// of size 100 as a stopping case. Use an insertion sort to
-				// finish.
-				// 2 for Select the first item of the partition as the pivot.
-				// Treat
-				// a partition
-				// of size 50 as a stopping case. Use an insertion sort to
-				// finish.
-				// 3 for Select the median-of-three as the pivot. Treat
-				// partitions
-				// of size one
-				// and two as stopping cases.
-				int[] hold = arr;
-				ob.sort(arr, 0, n - 1, 0);
-				ob.printArray(arr, fileNames[i], 0);
-				arr = hold;
-				ob.sort(arr, 0, n - 1, 1);
-				ob.printArray(arr, fileNames[i], 1);
-				arr = hold;
-				ob.sort(arr, 0, n - 1, 2);
-				ob.printArray(arr, fileNames[i], 2);
-				System.out.println("Number of files sorted: " + i);
-				// QuickSort.printArray(arr);
+			QuickSort ob = new QuickSort();
+			// 0 for Select the first item of the partition as the pivot.
+			// Treat
+			// partitions
+			// of size one and two as stopping cases.
+			// 1 for Select the first item of the partition as the pivot.
+			// Treat
+			// a partition
+			// of size 100 as a stopping case. Use an insertion sort to
+			// finish.
+			// 2 for Select the first item of the partition as the pivot.
+			// Treat
+			// a partition
+			// of size 50 as a stopping case. Use an insertion sort to
+			// finish.
+			// 3 for Select the median-of-three as the pivot. Treat
+			// partitions
+			// of size one
+			// and two as stopping cases.
+			int[] hold = arr;
+			ob.sort(arr, 0, n - 1, 0);
+			ob.printArray(arr, fileNames[i], 0);
+			arr = hold;
+			ob.sort(arr, 0, n - 1, 1);
+			ob.printArray(arr, fileNames[i], 1);
+			arr = hold;
+			ob.sort(arr, 0, n - 1, 2);
+			ob.printArray(arr, fileNames[i], 2);
+			ob.sort(arr, 0, n - 1, 2);
+			ob.printArray(arr, fileNames[i], 3);
+			System.out.println("Number of files sorted: " + i);
+			// QuickSort.printArray(arr);
 
-//			}
+			// }
 		}
 		// end block
 
