@@ -4,6 +4,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 // Java program for implementation of QuickSort
+/**
+ * This QuickSort class was borrowed in large part from the following source:
+ * “QuickSort - GeeksforGeeks.”
+ * 
+ * The median-of-three method was found here: “Quick Sort with Median-of-Three
+ * Partitioning : Sort « Collections « Java Tutorial.”
+ * 
+ * This class is not an exact copy of these sources, however, as personal
+ * contributions have been made to fit the requirements of this project. The
+ * standard quicksort method was altered to work with a pivot at the first
+ * element. The 100 and 50 quicksort methods were based on the first quicksort
+ * method after its alteration.
+ * 
+ * @author arta
+ *
+ */
 public class QuickSort {
 	/*
 	 * Select the first item of the partition as the pivot. Treat partitions of
@@ -146,12 +162,27 @@ public class QuickSort {
 		return intArray[right - 1];
 	}
 
+	/**
+	 * Swapping the array elements in median-of-three quicksort.
+	 * @param intArray Array to be sorted
+	 * @param dex1 Index A to be swapped
+	 * @param dex2 Index B to be swapped
+	 */
 	public static void swap(int[] intArray, int dex1, int dex2) {
 		int temp = intArray[dex1];
 		intArray[dex1] = intArray[dex2];
 		intArray[dex2] = temp;
 	}
 
+	/**
+	 * Partitioning the array for median-of-three sorting
+	 * 
+	 * @param intArray Array to be sorted
+	 * @param left Left pointer
+	 * @param right Right pointer
+	 * @param pivot Pivot around which array is sorted
+	 * @return Split position
+	 */
 	public static int partitionIt(int[] intArray, int left, int right,
 			double pivot) {
 		int leftPtr = left;
@@ -171,6 +202,12 @@ public class QuickSort {
 		return leftPtr;
 	}
 
+	/**
+	 * A median-of-three sort for partitions of size 1 and 2
+	 * @param intArray Array to be sorted
+	 * @param left Left element pointer
+	 * @param right Right element pointer
+	 */
 	public static void manualSort(int[] intArray, int left, int right) {
 		int size = right - left + 1;
 		if (size <= 1)
@@ -189,9 +226,14 @@ public class QuickSort {
 		}
 	}
 
-	/*
-	 * The main function that implements QuickSort() arr[] --> Array to be
-	 * sorted, low --> Starting index, high --> Ending index
+
+	/**
+	 * "The main function that implements QuickSort() arr[] --> Array to be
+	 * sorted, low --> Starting index, high --> Ending index"
+	 * @param arr Array to be sorted
+	 * @param low Element at the bottom of partition
+	 * @param high Element at the top of partition 
+	 * @param sortKind Type of quicksort that will be done on arr
 	 */
 	public void sort(int arr[], int low, int high, int sortKind) {
 		// QuickSort type 1; Pivot at first element, stopping case partitions of
@@ -220,7 +262,9 @@ public class QuickSort {
 				sort(arr, low, pi - 1, 1);
 				sort(arr, pi + 1, high, 1);
 			}
-		} else if (low < high && sortKind == 3) {
+				} 
+		// Median-of-three Quicksort
+		else if (low < high && sortKind == 3) {
 			int size = high - low + 1;
 			if (size <= 3)
 				manualSort(arr, low, high);
@@ -233,26 +277,39 @@ public class QuickSort {
 		}
 	}
 
-	/* A utility function to print array of size n */
-	public void printArray(int arr[], String fileName, int sortType) throws IOException {
+
+	/**
+	 * Prints entire array as well as sort type, elapsed time in nanoseconds and data file name to std out 
+	 * @param arr Sorted array
+	 * @param fileName Name of data file
+	 * @param sortType Type of quicksort
+	 * @param elapsedTime Time in nanoseconds of sort
+	 * 
+	 */
+	public void printArray(int arr[], String fileName, int sortType,
+			long elapsedTime) {
 		int n = arr.length;
 
 		switch (sortType) {
-		case 0: System.out.println("QuickSort Standard");
+		case 0:
+			System.out.println("QuickSort Standard");
 			break;
-		case 1:  
+		case 1:
 			System.out.println("QuickSort 100");
 			break;
-		case 2:  
+		case 2:
 			System.out.println("QuickSort 50");
 			break;
-		case 3:  
+		case 3:
 			System.out.println("QuickSort Median-of-Three");
 			break;
 		}
 		System.out.print("Name of data file: " + fileName + "\n");
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + " ");
+		System.out.println();
+		System.out.println("Elapsed time of sort calculation in nanoseconds: "
+				+ elapsedTime);
 		System.out.println();
 	}
 

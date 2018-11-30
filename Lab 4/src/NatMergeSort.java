@@ -1,10 +1,24 @@
-// Java program to illustrate merge sorted
-// of linkedList
 
+/**
+ * Natural merge sort, that was almost entirely lifted from: “Merge Sort for
+ * Linked Lists.”
+ * 
+ * My contribution converted this code from merely a merge sort to a natural
+ * merge sort.
+ * 
+ * @author arta
+ *
+ */
 public class NatMergeSort {
 	node head = null;
 
 	// node a,b;
+	/**
+	 * Node class - not using Java libraries
+	 * 
+	 * @author arta
+	 *
+	 */
 	static class node {
 		int val;
 		node next;
@@ -14,6 +28,13 @@ public class NatMergeSort {
 		}
 	}
 
+	/**
+	 * Recursive method that does the actual merge sorting
+	 * 
+	 * @param leftHead First element of left substructure
+	 * @param rightHead First element of right substructure
+	 * @return Sorted node
+	 */
 	public node sortedMerge(node leftHead, node rightHead) {
 		node result = null;
 		/* Base cases */
@@ -34,6 +55,12 @@ public class NatMergeSort {
 
 	}
 
+	/**
+	 * Creates the sublist for natural merge sort
+	 * 
+	 * @param head First call is top-most node, subsequent calls are recursive
+	 * @return Cut-off point for each sublist
+	 */
 	public node mergeSort(node head) {
 		// Base case : if head is null
 		if (head == null || head.next == null) {
@@ -41,7 +68,7 @@ public class NatMergeSort {
 		}
 
 		// get the middle of the list
-		node sorted = getMiddle(head);
+		node sorted = getComparison(head);
 		node unsorted = sorted.next;
 
 		// set the next of middle node to null
@@ -61,7 +88,7 @@ public class NatMergeSort {
 	}
 
 	// Utility function to get the middle of the linked list
-	public node getMiddle(node head) {
+	public node getComparison(node head) {
 		// Base case
 		if (head == null)
 			return head;
@@ -92,14 +119,18 @@ public class NatMergeSort {
 	}
 
 	// Utility function to print the linked list
-	public void printList(node headref) {
+	public void printList(node headref, long startTime, long endTime) {
 		while (headref != null) {
 			System.out.print(headref.val + " ");
 			headref = headref.next;
 		}
+		System.out.println();
+		long elapsedTime = endTime - startTime;
+		System.out.println("Elapsed time of sort calculation in nanoseconds: "
+				+ elapsedTime);
 	}
 
-	public void xFer(int[] arr, String fileName) {
+	public void xFer(int[] arr, String fileName, long startTime) {
 
 		for (int i = 0; i < arr.length; i++) {
 			push(arr[i]);
@@ -107,9 +138,10 @@ public class NatMergeSort {
 
 		// Apply merge Sort
 		this.head = mergeSort(this.head);
+		long endTime = System.nanoTime();
 		System.out.println("Natural Merge Sort");
 		System.out.println("Name of data file: " + fileName);
-		printList(this.head);
+		printList(this.head, startTime, endTime);
 	}
 }
 
