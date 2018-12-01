@@ -347,36 +347,47 @@ public class QuickSort
          *            Type of quicksort
          * @param elapsedTime
          *            Time in nanoseconds of sort
+         * @throws IOException 
          * 
          */
         public void printArray(int arr[], String fileName, int sortType,
-                long elapsedTime)
+                long elapsedTime) throws IOException
             {
                 int n = arr.length;
-
+                PrintWriter print = new PrintWriter(new FileWriter(
+                        "SortTimeOutput.txt", true));
                 switch (sortType)
                     {
                     case 0:
                         System.out.println("QuickSort Standard");
+                        print.println("QuickSort Standard");
                         break;
                     case 1:
                         System.out.println("QuickSort 100");
+                        print.println("QuickSort 100");
                         break;
                     case 2:
                         System.out.println("QuickSort 50");
+                        print.println("QuickSort 50");
                         break;
                     case 3:
                         System.out.println("QuickSort Median-of-Three");
+                        print.println("QuickSort Median-of-Three");
                         break;
                     }
-                System.out.print("Name of data file: " + fileName + "\n");
+                System.out.println("Name of data file: " + fileName);
+                print.println("Name of data file: " + fileName);
                 for (int i = 0; i < n; ++i)
                     System.out.print(arr[i] + " ");
                 System.out.println();
                 System.out.println(
                         "Elapsed time of sort calculation in nanoseconds: "
                                 + elapsedTime);
+                print.println(
+                        "Elapsed time of sort calculation in nanoseconds: "
+                                + elapsedTime +"\n");                
                 System.out.println();
+                print.close();
             }
 
     }

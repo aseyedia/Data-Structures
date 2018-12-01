@@ -116,7 +116,7 @@ public class Main
                         natMerSort.xFer(arr, fileNames[i], startTime);
 
                         System.out.println(
-                                "Number of files sorted: " + i + "\n");
+                                "Number of files sorted: " + (i + 1) + "\n");
                     }
 
             }
