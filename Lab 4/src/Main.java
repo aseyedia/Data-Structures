@@ -85,7 +85,7 @@ public class Main
                         long endTime = System.nanoTime();
                         long elapsedTime = endTime - startTime;
                         quickSort.printArray(arr, fileNames[i], 0,
-                                elapsedTime);
+                                elapsedTime, i+1);
                         // QuickSort 100
                         arr = hold;
                         startTime = System.nanoTime();
@@ -93,7 +93,7 @@ public class Main
                         endTime = System.nanoTime();
                         elapsedTime = endTime - startTime;
                         quickSort.printArray(arr, fileNames[i], 1,
-                                elapsedTime);
+                                elapsedTime, i+1);
                         // QuickSort 50
                         arr = hold;
                         startTime = System.nanoTime();
@@ -101,7 +101,7 @@ public class Main
                         endTime = System.nanoTime();
                         elapsedTime = endTime - startTime;
                         quickSort.printArray(arr, fileNames[i], 2,
-                                elapsedTime);
+                                elapsedTime, i+1);
                         // Median-of-Three QuickSort
                         arr = hold;
                         startTime = System.nanoTime();
@@ -109,7 +109,7 @@ public class Main
                         endTime = System.nanoTime();
                         elapsedTime = endTime - startTime;
                         quickSort.printArray(arr, fileNames[i], 3,
-                                elapsedTime);
+                                elapsedTime, i+1);
                         // Natural Merge Sort
                         arr = hold;
                         startTime = System.nanoTime();
