@@ -10,6 +10,11 @@
 class InsertionSort
     {
         /* Function to sort array using insertion sort */
+        /**
+         * Primary sort method in Insertion Sort. 
+         * @param arr Array to be sorted
+         * @return Sorted array
+         */
         public int[] sort(int arr[])
             {
                 int n = arr.length;
