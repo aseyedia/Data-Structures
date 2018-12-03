@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Natural merge sort, that was almost entirely lifted from: "Merge Sort for
@@ -155,9 +158,14 @@ public class NatMergeSort
          *            Start time for timer
          * @param endTime
          *            End time for timer
+         * @throws IOException
          */
-        public void printList(node headref, long startTime, long endTime)
+        public void printList(node headref, long startTime, long endTime,
+                int i, String fileName) throws IOException
             {
+
+                PrintWriter print =
+                        new PrintWriter(new FileWriter("NMSOut.txt", true));
                 while (headref != null)
                     {
                         System.out.print(headref.val + " ");
@@ -165,9 +173,13 @@ public class NatMergeSort
                     }
                 System.out.println();
                 long elapsedTime = endTime - startTime;
+                print.print("NMS" + "\t" + fileName + "\t" + elapsedTime
+                        + "\t" + i + "\t\n");
+                print.close();
                 System.out.println(
                         "Elapsed time of sort calculation in nanoseconds: "
                                 + elapsedTime);
+
             }
 
         /**
@@ -175,16 +187,21 @@ public class NatMergeSort
          * the push method, then calls the sort method and finds the end time
          * for the sort
          * 
-         * @param arr Array to be converted to linked structure
-         * @param fileName Name of the file
-         * @param startTime Start time of sort
+         * @param arr
+         *            Array to be converted to linked structure
+         * @param fileName
+         *            Name of the file
+         * @param startTime
+         *            Start time of sort
+         * @throws IOException
          */
-        public void xFer(int[] arr, String fileName, long startTime)
+        public void xFer(int[] arr, String fileName, long startTime, int i)
+                throws IOException
             {
 
-                for (int i = 0; i < arr.length; i++)
+                for (int i1 = 0; i1 < arr.length; i1++)
                     {
-                        push(arr[i]);
+                        push(arr[i1]);
                     }
 
                 // Apply merge Sort
@@ -192,6 +209,6 @@ public class NatMergeSort
                 long endTime = System.nanoTime();
                 System.out.println("Natural Merge Sort");
                 System.out.println("Name of data file: " + fileName);
-                printList(this.head, startTime, endTime);
+                printList(this.head, startTime, endTime, i, fileName);
             }
     }

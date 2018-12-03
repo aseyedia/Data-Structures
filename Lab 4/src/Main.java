@@ -113,7 +113,7 @@ public class Main
                         // Natural Merge Sort
                         arr = hold;
                         startTime = System.nanoTime();
-                        natMerSort.xFer(arr, fileNames[i], startTime);
+                        natMerSort.xFer(arr, fileNames[i], startTime, i+1);
 
                         System.out.println(
                                 "Number of files sorted: " + (i + 1) + "\n");
